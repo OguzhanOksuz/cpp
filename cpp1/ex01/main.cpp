@@ -9,7 +9,7 @@ int	main()
 	Zombie* Horde = zombieHorde(N, "Zombo");
 
 	for (int i = 0; i < N; i++)
-		Horde->announce();
+		Horde[i].announce();
 	delete[] Horde;
 
 	return (0);

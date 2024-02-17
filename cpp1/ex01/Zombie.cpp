@@ -11,6 +11,11 @@ Zombie::Zombie(std::string name)
 	std::cout << name << ": created" << std::endl;
 }
 
+void Zombie::set_name(std::string name)
+{
+	this->name = name;
+}
+
 Zombie *newZombie(std::string name)
 {
 	return (new Zombie(name));
