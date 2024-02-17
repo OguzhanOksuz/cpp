@@ -1,9 +1,10 @@
 #include <iostream>
+#include <string>
 
 int main(int ac, char **av)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 
 	i = 0;
 	if (ac == 1)
@@ -15,9 +16,7 @@ int main(int ac, char **av)
 	{
 		j = -1;
 		while (av[i][++j])
-			if (av[i][j] >= 'a' && av[i][j] <= 'z')
-				av[i][j] -= 32;
-		std::cout << av[i];
+			std::cout << (char)toupper(av[i][j]);
 	}
 	std::cout << std::endl;
 	return (0);
