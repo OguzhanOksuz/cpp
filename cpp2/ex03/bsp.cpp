@@ -3,7 +3,7 @@
 float Area(float lenA, float lenB, float lenC)
 {
 	float lenU = ((lenA + lenB +lenC) / 2);
-	float Area = sqrt(lenU * (lenU - lenA) * (lenU - lenB) * (lenU - lenC));
+	float Area = std::sqrt(lenU * (lenU - lenA) * (lenU - lenB) * (lenU - lenC));
 	return (Area);
 }
 
