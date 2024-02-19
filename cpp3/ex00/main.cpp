@@ -27,9 +27,46 @@ int main()
 	CT2.takeDamage(1);
 	CT2.takeDamage(1);
 	CT2.takeDamage(1);
+
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
+
+	CT2.attack("CT3");
+	CT2.attack("CT3");
+	CT2.attack("CT3");
+	CT2.attack("CT3");
+	CT2.attack("CT3");
+	std::cout << "-------" << std::endl;
+	CT2.attack("CT3");
+	CT2.beRepaired(1);
+	std::cout << "-------" << std::endl;
+
+	CT3.attack("CT1");
+	CT3.attack("CT1");
+	CT3.beRepaired(1);
+	CT3.beRepaired(1);
+
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	std::cout << "-------" << std::endl;
+	CT3.takeDamage(1);
+	CT3.takeDamage(1);
+	std::cout << "-------" << std::endl;
+	CT3.attack("CT1");
+	CT3.attack("CT1");
+	CT3.beRepaired(1);
+	CT3.beRepaired(1);
 }
