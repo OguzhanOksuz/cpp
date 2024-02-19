@@ -27,13 +27,11 @@ int main()
 	CT2.takeDamage(1);
 	CT2.takeDamage(1);
 	CT2.takeDamage(1);
-
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
 	CT2.beRepaired(1);
-
 	CT2.attack("CT3");
 	CT2.attack("CT3");
 	CT2.attack("CT3");
@@ -41,6 +39,8 @@ int main()
 	CT2.attack("CT3");
 	std::cout << "-------" << std::endl;
 	CT2.attack("CT3");
+	CT2.attack("CT3");
+	CT2.beRepaired(1);
 	CT2.beRepaired(1);
 	std::cout << "-------" << std::endl;
 
@@ -69,4 +69,39 @@ int main()
 	CT3.attack("CT1");
 	CT3.beRepaired(1);
 	CT3.beRepaired(1);
+
+	ClapTrap CCT1 = ClapTrap(CT1);
+	CCT1.attack("CT1");
+	CCT1.attack("CT1");
+
+	ClapTrap CT4 = ClapTrap("CT4");
+	ClapTrap CCT4 = ClapTrap(CT4);
+
+	CCT4.attack("CT1");
+	CCT4.attack("CT1");
+	CCT4.attack("CT1");
+	CCT4.attack("CT1");
+
+	CT4.attack("CT1");
+	CT4.attack("CT1");
+	CT4.attack("CT1");
+	CT4.attack("CT1");
+
+	ClapTrap ECT1 = CT1;
+	ClapTrap ECT4 = CT4;
+
+	ECT1.attack("CT1");
+	ECT1.attack("CT1");
+	ECT1.attack("CT1");
+	ECT1.attack("CT1");
+
+	ECT4.attack("CT1");
+	ECT4.attack("CT1");
+	ECT4.attack("CT1");
+	ECT4.attack("CT1");
+
+	CT4.attack("CT2");
+	CT4.attack("CT2");
+	CT4.attack("CT2");
+	CT4.attack("CT2");
 }
