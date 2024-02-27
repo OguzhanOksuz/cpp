@@ -2,6 +2,9 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -9,11 +12,7 @@ class Bureaucrat
 		std::string name;
 		int grade;
 	public:
-		Bureaucrat();
-		Bureaucrat(std::string name);
-		Bureaucrat(int grade);
 		Bureaucrat(std::string name, int grade);
-		Bureaucrat(int grade, std::string name);
 		Bureaucrat(const Bureaucrat &ref);
 		Bureaucrat &operator=(const Bureaucrat &ref);
 		~Bureaucrat();
@@ -29,6 +28,7 @@ class Bureaucrat
 		{
 			const char *what() const throw();
 		};
+		void signForm(Form &f);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &ref);

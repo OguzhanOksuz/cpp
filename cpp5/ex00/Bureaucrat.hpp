@@ -9,11 +9,7 @@ class Bureaucrat
 		std::string name;
 		int grade;
 	public:
-		Bureaucrat();
-		Bureaucrat(std::string name);
-		Bureaucrat(int grade);
 		Bureaucrat(std::string name, int grade);
-		Bureaucrat(int grade, std::string name);
 		Bureaucrat(const Bureaucrat &ref);
 		Bureaucrat &operator=(const Bureaucrat &ref);
 		~Bureaucrat();

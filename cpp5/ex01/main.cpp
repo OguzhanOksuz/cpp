@@ -1,118 +1,21 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	try
-	{
-		Bureaucrat b("William", 0);
-	}
-	catch(std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	Bureaucrat b1("William", 1);
+	Bureaucrat b150("William", 150);
+	Form	f1("WordPass", 1, 1);
+	Form	f150("WalkPass", 150, 150);
+
 
 	try
-	 {
-		Bureaucrat b("William", 151);
-	 }
-	 catch(std::exception& e)
-	 {
+	{
+		f1.beSigned(b150);
+	}
+	catch (std::exception &e)
+	{
 		std::cout << e.what() << std::endl;
-	 }
-
-	 try
-	 {
-		Bureaucrat b("William", 1);
- 		b.increment();
- 	 }
-   	catch(std::exception& e)
-  	{
-		std::cout << e.what() << std::endl;
- 	}
-
-	 try
-	 {
- 		Bureaucrat b("William", 150);
-	 	b.decrement();
- 	}
- 	catch(std::exception& e)
-	 {
-		std::cout << e.what() << std::endl;
-	 }
-
-	 try
-	 {
-	 	Bureaucrat b("William", 1);
- 		std::cout << "Bureaucrat name : " << b.getName() << std::endl;
- 		std::cout << "Bureaucrat grade : " << b.getGrade() << std::endl;
-	 	std::cout << b << std::endl;
- 	}
- 	catch(std::exception& e)
-	 {
-		std::cout << e.what() << std::endl;
- 	}
-
-	 try
-	 {
-	 	Bureaucrat b(1, "William");
- 		std::cout << "Bureaucrat name : " << b.getName() << std::endl;
- 		std::cout << "Bureaucrat grade : " << b.getGrade() << std::endl;
-	 	std::cout << b << std::endl;
- 	}
- 	catch(std::exception& e)
-	 {
-		std::cout << e.what() << std::endl;
- 	}
-
-	 try
-	 {
-	 	Bureaucrat b("William");
- 		std::cout << "Bureaucrat name : " << b.getName() << std::endl;
- 		std::cout << "Bureaucrat grade : " << b.getGrade() << std::endl;
-	 	std::cout << b << std::endl;
- 	}
- 	catch(std::exception& e)
-	 {
-		std::cout << e.what() << std::endl;
- 	}
-
-	 try
-	 {
-	 	Bureaucrat b(1);
- 		std::cout << "Bureaucrat name : " << b.getName() << std::endl;
- 		std::cout << "Bureaucrat grade : " << b.getGrade() << std::endl;
-	 	std::cout << b << std::endl;
- 	}
- 	catch(std::exception& e)
-	 {
-		std::cout << e.what() << std::endl;
- 	}
-
-	 try
-	 {
-	 	Bureaucrat b("William", 1);
-		b.decrement();
- 		std::cout << "Bureaucrat name : " << b.getName() << std::endl;
- 		std::cout << "Bureaucrat grade : " << b.getGrade() << std::endl;
-	 	std::cout << b << std::endl;
- 	}
- 	catch(std::exception& e)
-	 {
-		std::cout << e.what() << std::endl;
- 	}
-
-	 try
-	 {
-	 	Bureaucrat b("William", 150);
-		b.increment();
- 		std::cout << "Bureaucrat name : " << b.getName() << std::endl;
- 		std::cout << "Bureaucrat grade : " << b.getGrade() << std::endl;
-	 	std::cout << b << std::endl;
- 	}
- 	catch(std::exception& e)
-	 {
-		std::cout << e.what() << std::endl;
- 	}
-
+	}
 	return (0);
 }
