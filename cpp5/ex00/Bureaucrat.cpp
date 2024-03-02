@@ -1,13 +1,23 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade): name(name)
 {
-	this->name = name;
-	if (grade > 150)
-		throw(Bureaucrat::GradeTooLowException());
 	if (grade < 1)
 		throw(Bureaucrat::GradeTooHighException());
+	if (grade > 150)
+		throw(Bureaucrat::GradeTooLowException());
 	this->grade = grade;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &ref)
+{
+	*this = ref; 
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &ref)
+{
+	this->grade = ref.getGrade();
+	return(*this);
 }
 
 Bureaucrat::~Bureaucrat()
@@ -15,50 +25,35 @@ Bureaucrat::~Bureaucrat()
 
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &ref)
-{
-	*this = ref;
-}
-
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &ref)
-{
-	this->name = ref.getName();
-	this->grade = ref.getGrade();
-	return (*this);
-}
-
 std::string Bureaucrat::getName() const
 {
 	return (this->name);
 }
 
-int Bureaucrat::getGrade()	const
+int Bureaucrat::getGrade() const
 {
 	return (this->grade);
 }
 
 void Bureaucrat::increment()
 {
-	if (this->grade == 1)
+	if (this->grade <= 1)
 		throw(Bureaucrat::GradeTooHighException());
-	this->grade--;
+	else
+		this->grade--;
 }
 
 void Bureaucrat::decrement()
 {
-	if (this->grade == 150)
+	if (this->grade >= 150)
 		throw(Bureaucrat::GradeTooLowException());
-	this->grade++;
+	else
+		this->grade++;
 }
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &ref)
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	os << ref.getName();
-	os << ", bureaucrat grade ";
-	os << ref.getGrade();
-	os << ".";
-	os << std::endl;
-	return (os);
+	return ("Grade is too high!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
@@ -66,7 +61,8 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 	return ("Grade is too low!");
 }
 
-const char *Bureaucrat::GradeTooHighException::what() const throw()
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &ref)
 {
-	return ("Grade is too high!");
+	os << ref.getName() << ", bureaucrat grade " << ref.getGrade() << "." << std::endl;
+	return (os);
 }
