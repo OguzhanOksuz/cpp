@@ -1,5 +1,10 @@
 #include "Form.hpp"
 
+Form::Form(): name("Default"), signGrade(150), executeGrade(150)
+{
+	this->sign = false;
+}
+
 Form::Form(std::string name, int signGrade, int executeGrade): name(name), signGrade(signGrade), executeGrade(executeGrade)
 {
 	this->sign = false;
