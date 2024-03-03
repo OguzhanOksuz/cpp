@@ -1,109 +1,122 @@
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
-	Bureaucrat b1("Xavier", 1);
-	Bureaucrat b150("Xavier", 150);
+	Bureaucrat B1("Xavier", 1);
+	Bureaucrat B150("Xavier", 150);
+	Form *Sb = new ShrubberyCreationForm("BackEnd");
+	Form *Rb = new RobotomyRequestForm("FrontEnd");
+	Form *Pb = new PresidentialPardonForm("Fullstack");
 
-	std::cout << "Form 0 151" << std::endl;
+	std::cout << "---Shrubbery tests----" << std::endl;
+	std::cout << "NOt signed form" << std::endl;
 	try
 	{
-		Form f("Freeze", 0, 151);
-		std::cout << f << std::endl;
+		Sb->execute(B1);
+		std::cout << *Sb << std::endl;
 	}
-	catch(std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
+	std::cout << "signed form and execute" << std::endl;
+	try
+	{
+		B1.signForm(*Sb);
+		Sb->execute(B1);
+		std::cout << *Sb << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 	
-	std::cout << "Form 0 150" << std::endl;
+	std::cout << "TooLowGradeException error" << std::endl;
 	try
 	{
-		Form f("Freeze", 0, 150);
-		std::cout << f << std::endl;
+		Sb->execute(B150);
+		std::cout << *Sb << std::endl;
 	}
-	catch(std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << "Form 1 151" << std::endl;
+	std::cout << "---Robotomy tests----" << std::endl;
+	std::cout << "NOt signed form" << std::endl;
 	try
 	{
-		Form f("Freeze", 1, 151);
-		std::cout << f << std::endl;
+		Rb->execute(B1);
+		std::cout << *Rb << std::endl;
 	}
-	catch(std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << "Form 1 150" << std::endl;
+	std::cout << "signed form and execute" << std::endl;
 	try
 	{
-		Form f("Freeze", 1, 150);
-		std::cout << f << std::endl;
+		B1.signForm(*Rb);
+		Rb->execute(B1);
+		std::cout << *Rb << std::endl;
 	}
-	catch(std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
 	
-	std::cout << "Form 1 150 beSign Bureacurat 150" << std::endl;
+	std::cout << "TooLowGradeException error" << std::endl;
 	try
 	{
-		Form f("Freeze", 1, 150);
-		f.beSigned(b150);
-		std::cout << f << std::endl;
+		Rb->execute(B150);
+		std::cout << *Rb << std::endl;
 	}
-	catch(std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << "Form 1 150 beSign Bureacurat 1" << std::endl;
+	std::cout << "---Presidential tests----" << std::endl;
+	std::cout << "NOt signed form" << std::endl;
 	try
 	{
-		Form f("Freeze", 1, 150);
-		f.beSigned(b1);
-		std::cout << f << std::endl;
+		Pb->execute(B1);
+		std::cout << *Pb << std::endl;
 	}
-	catch(std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
+	std::cout << "signed form and execute" << std::endl;
+	try
+	{
+		B1.signForm(*Pb);
+		Pb->execute(B1);
+		std::cout << *Pb << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 	
-	std::cout << "Bureacurat 150 SignForm 1" << std::endl;
+	std::cout << "TooLowGradeException error" << std::endl;
 	try
 	{
-		Form f("Freeze", 1, 150);
-		b150.signForm(f);
+		Pb->execute(B150);
+		std::cout << *Pb << std::endl;
 	}
-	catch(std::exception &e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << "Bureacurat 1 SignForm 1" << std::endl;
-	try
-	{
-		Form f("Freeze", 1, 150);
-		b1.signForm(f);
-	}
-	catch(std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
 
-	std::cout << "Bureacurat 1 SignForm 1 twice" << std::endl;
-	try
-	{
-		Form f("Freeze", 1, 150);
-		b1.signForm(f);
-		b1.signForm(f);
-	}
-	catch(std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
 }

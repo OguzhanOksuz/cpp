@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 class Form;
 
@@ -13,6 +13,7 @@ class Bureaucrat
 		const std::string name;
 		int grade;
 	public:
+		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat &ref);
 		Bureaucrat &operator=(const Bureaucrat &ref);
