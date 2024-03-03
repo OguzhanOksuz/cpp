@@ -9,6 +9,9 @@ int main()
 	Form *Sb = new ShrubberyCreationForm("BackEnd");
 	Form *Rb = new RobotomyRequestForm("FrontEnd");
 	Form *Pb = new PresidentialPardonForm("Fullstack");
+	Form *Sbb = new ShrubberyCreationForm("BackEnd");
+	Form *Rbb = new RobotomyRequestForm("FrontEnd");
+	Form *Pbb = new PresidentialPardonForm("Fullstack");
 
 	std::cout << "---Shrubbery tests----" << std::endl;
 	std::cout << "NOt signed form" << std::endl;
@@ -118,5 +121,39 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 
+	std::cout << "----ExecuteForm tests----" << std::endl;
+	std::cout << "B1 executing all" << std::endl;
+	try
+	{
+		B1.signForm(*Sbb);
+		B1.signForm(*Rbb);
+		B1.signForm(*Pbb);
+		B1.executeForm(*Sbb);
+		B1.executeForm(*Rbb);
+		B1.executeForm(*Pbb);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	
+	std::cout << "B150 executing all" << std::endl;
+	try
+	{
+		B150.executeForm(*Sbb);
+		B150.executeForm(*Rbb);
+		B150.executeForm(*Pbb);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
+	delete Sb;
+	delete Rb;
+	delete Pb;
+	delete Sbb;
+	delete Rbb;
+	delete Pbb;
+	return (0);
 }
