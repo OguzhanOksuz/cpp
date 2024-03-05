@@ -1,4 +1,7 @@
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base::~Base()
 {
@@ -7,8 +10,8 @@ Base::~Base()
 
 Base *generate(void)
 {
-	std::srand(std::time(0));
-	int i = std::rand() % 3;
+	srand(time(0));
+	int i = rand() % 3;
 	if (i == 0)
 		return (new A);
 	else if (i == 1)
@@ -29,10 +32,10 @@ void identify(Base *p)
 
 void identify(Base &p)
 {
-	if (dynamic_cast<A &>(p))
+	if (dynamic_cast<A *>(&p))
 		std::cout << "Type A" << std::endl;
-	else if (dynamic_cast<B &>(p))
+	else if (dynamic_cast<B *>(&p))
 		std::cout << "Type B" << std::endl;
-	else if (dynamic_cast<C &>(p))
+	else if (dynamic_cast<C *>(&p))
 		std::cout << "Type C" << std::endl;
 }

@@ -1,7 +1,7 @@
 #ifndef C_HPP
 #define C_HPP
 
-#define "Base.hpp"
+#include "Base.hpp"
 
 class C: public Base
 {
