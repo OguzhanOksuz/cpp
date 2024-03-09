@@ -17,8 +17,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &ref): Form(r
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &ref)
 {
-	(void) ref;
-	*this = ref;
+	(void)ref;
 	return (*this);
 }
 
