@@ -8,11 +8,12 @@ class Data;
 
 class Serializer
 {
-	public:
+	private:
 		Serializer();
 		Serializer(const Serializer &ref);
 		Serializer &operator=(const Serializer &ref);
 		~Serializer();
+	public:
 		static uintptr_t serialize(Data *ptr);
 		static Data* deserialize(uintptr_t raw);
 };
