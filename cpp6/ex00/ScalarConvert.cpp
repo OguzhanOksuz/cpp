@@ -161,7 +161,7 @@ void ScalarConvert::convert(std::string str)
 			}
 			else
 			{
-				std::cout << "double: " << Double << ".0" <<  std::endl;
+				std::cout << "double: " << Double << std::endl;
 			}
 		}
 		else
