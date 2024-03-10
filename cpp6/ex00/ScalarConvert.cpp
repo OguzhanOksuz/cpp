@@ -51,7 +51,10 @@ void ScalarConvert::convert(std::string str)
 				Counter++;
 		}
 		if (PointC > 1 || Counter != 0)
-			str = "";
+		{
+			if (str != "nan" && str != "nanf" && str != "inf" && str != "inff" && str != "-inf" && str != "-inff")
+				str = "";
+		}
 	}
 	{
 		std::stringstream s(str);
