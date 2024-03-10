@@ -23,10 +23,41 @@ ScalarConvert::~ScalarConvert()
 
 void ScalarConvert::convert(std::string str)
 {
+	if (str.size() == 1)
+	{
+		int num = str[0];
+		str = std::to_string(num);
+	}
+	else
+	{
+		int PointC = 0;
+		int i = 0;
+		for (; str[i]; i++)
+		{
+			if (str[i] == '.')
+				PointC++;
+		}
+		if (PointC == 1 && str[i - 1] == 'f')
+			str.pop_back();
+	}
+	{
+		int PointC = 0;
+		int Counter = 0;
+		for (int i = 0; str[i]; i++)
+		{
+			if (str[i] == '.')
+				PointC++;
+			else if (str[i] < '0' || str[i] > '9')
+				Counter++;
+		}
+		if (PointC > 1 || Counter != 0)
+			str = "";
+	}
 	{
 		std::stringstream s(str);
 		int num;
 		s >> num;
+		
 		if (!s.fail())
 		{
 			if (num >= 0 && num <= 127)
@@ -48,7 +79,7 @@ void ScalarConvert::convert(std::string str)
 		}
 		else
 		{
-			std::cout << "char: impossible" << std::endl;
+				std::cout << "char: impossible" << std::endl;
 		}
 	}
 
@@ -83,7 +114,12 @@ void ScalarConvert::convert(std::string str)
 		{
 			std::cout << "float: nanf" << std::endl;
 		}
-		else if (!s.fail())
+		else if (s.fail())
+		{
+			std::cout << "float: impossible" << std::endl;
+
+		}
+		else
 		{
 			float Float = std::stof(str);
 			if (Float - static_cast<int>(Float) == 0)
@@ -94,10 +130,6 @@ void ScalarConvert::convert(std::string str)
 			{
 				std::cout << "float: " << Float << "f" << std::endl;
 			}
-		}
-		else
-		{
-			std::cout << "float: impossible" << std::endl;
 		}
 	}
 
