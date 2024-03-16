@@ -7,9 +7,9 @@ int main(int ac, char **av)
 	
 	int flag = 0;
 
-	if (ac == 2)
+	if (ac == 3)
 	{
-		std::ifstream dataBase("data.csv");
+		std::ifstream dataBase(av[1]);
 		if (dataBase.is_open())
 		{	
 			std::string line;
@@ -52,7 +52,7 @@ int main(int ac, char **av)
 				dataMap[getIntDate(date)] = getIntValue(value);
 				ss.clear();
 			}
-			std::ifstream Input(av[1]);
+			std::ifstream Input(av[2]);
 			if (Input.is_open())
 			{
 				flag = 0;
@@ -90,7 +90,7 @@ int main(int ac, char **av)
 					}
 					else if (getIntDate(date) < dataMap.begin()->first)
 					{
-						std::cout<< "Error: date is older than fist data => " << date << "!" << std::endl; 
+						std::cout<< "Error: date is older than first data => " << date << "!" << std::endl; 
 					}
 					else
 					{
