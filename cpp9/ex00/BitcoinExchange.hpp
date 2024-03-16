@@ -12,6 +12,7 @@ int isFormat(std::string str);
 int checkDate(std::string str);
 int checkValue(std::string str);
 int getIntDate(std::string str);
-int getIntValue(std::string str);
-
+double getIntValue(std::string str);
+int  checkLineValue(std::string str);
+double getValue(std::map<int, double> dataMap, int date, double value);
 #endif

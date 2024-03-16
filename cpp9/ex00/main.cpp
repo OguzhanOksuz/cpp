@@ -6,70 +6,75 @@ int main(int ac, char **av)
 	std::map<int, double> dataMap;
 	
 	int flag = 0;
-	(void) av; ///-------------------------- ///--------------------------
 
 	if (ac == 2)
 	{
 		std::ifstream dataBase("data.csv");
 		if (dataBase.is_open())
 		{	
-			std::stringstream ss(line);
 			std::string line;
 			std::string date;
 			std::string value;
 			while (std::getline(dataBase, line))
 			{
+				std::stringstream ss(line);
 				if (charCount(line, ',') != 1)
 				{
-					std::cout << "Error: Database line has invalid arguman count!" << std::endl;
+					std::cout << "Error: Database line has invalid arguman count = " << line << "!" << std::endl;
 					dataBase.close();
 					return (1);
 				}
 				std::getline(ss, date, ',');
 				std::getline(ss, value, ',');
-				if (date == "data" || value == "exchange_rate")
+				if (date == "date" || value == "exchange_rate")
 				{
 					flag++;
 					if (flag > 1)
 					{
-						std::cout << "Error: Database has more than one format line count!" << std::endl;
+						std::cout << "Error: Database has more than one format line count = " << line << "!" << std::endl;
 						dataBase.close();
 						return (1);
 					}
+					continue;
 				}
 				else if (checkDate(date) == -1)
 				{
-					std::cout << "Error: Invalid date found in database!" << std::endl;
+					std::cout << "Error: Invalid date found in database = " << date << "!" << std::endl;
 					dataBase.close();
 					return (1);
 				}
 				else if (checkValue(value) == -1)
 				{
-					std::cout << "Error: Invalid value found in database!" << std::endl;
+					std::cout << "Error: Invalid value found in database = " << line << "!" << std::endl;
 					dataBase.close();
 					return (1);
 				}
 				dataMap[getIntDate(date)] = getIntValue(value);
+				ss.clear();
 			}
-			dataBase.close();
 			std::ifstream Input(av[1]);
 			if (Input.is_open())
 			{
 				flag = 0;
 				while (std::getline(Input, line))
 				{
+					std::stringstream ss(line);
 					flag++;
 					std::getline(ss, date, '|');
 					std::getline(ss, value, '|');
-					
+
+					if (date[date.size() - 1] == ' ')
+						date.pop_back();
+					if (value[0] == ' ')
+						value.erase(0, 1);
 					if (charCount(line, '|') != 1)
 					{
-						std::cout << "Error: bad input =>" << line << "!" << std::endl;
+						std::cout << "Error: bad input => " << line << "!" << std::endl;
 					}
 					else if (date == "date " && value == " value")
 					{
 						if (flag != 1)
-							std::cout << "Error: bad input =>" << line << "!" << std::endl;
+							std::cout << "Error: bad input => " << line << "!" << std::endl;
 					}
 					else if (checkDate(date) == -1)
 					{
@@ -83,11 +88,15 @@ int main(int ac, char **av)
 					{
 						std::cout << "Error: too large number => " << value << "!" << std::endl;
 					}
+					else if (getIntDate(date) < dataMap.begin()->first)
+					{
+						std::cout<< "Error: date is older than fist data => " << date << "!" << std::endl; 
+					}
 					else
 					{
-						std::cout << date << " => " << value << " = " << getValue(dataMap, date, value) << std::endl;
+						std::cout << date << " => " << value << " = " << getValue(dataMap, getIntDate(date), getIntValue(value)) << std::endl;
 					}
-					
+					ss.clear();
 				}
 			}
 			else

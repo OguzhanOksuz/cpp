@@ -29,6 +29,7 @@ int checkDate(std::string str)
 	std::string year;
 	std::string month;
 	std::string day;
+
 	if (charCount(str, '-') != 2)
 		return (-1);
 	getline(ss, year, '-');
@@ -133,7 +134,39 @@ int getIntDate(std::string str)
 	return (rt);
 }
 
-int getIntValue(std::string str)
+double getIntValue(std::string str)
 {
 	return (stod(str));
+}
+
+int checkLineValue(std::string str)
+{
+	double num;
+
+	if (checkValue(str) == 1)
+	{
+		num = std::stod(str);
+		if (num < 0 || num > 1000)
+			return (-2);
+		return (1);
+	}
+	else
+	{
+		return (-1);
+	}
+}
+
+double getValue(std::map<int, double> dataMap, int date, double value)
+{
+	std::map<int, double>::iterator it = dataMap.lower_bound(date);
+	
+	if (it->first == date)
+	{
+			return (it->second * value);
+	}
+	else
+	{
+		it--;
+			return (it->second * value);
+	}
 }
